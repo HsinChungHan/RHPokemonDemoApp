@@ -14,6 +14,9 @@
 		D154D4002B623AB30019A665 /* RHPokemonDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3FF2B623AB30019A665 /* RHPokemonDemoAppTests.swift */; };
 		D154D40A2B623AB30019A665 /* RHPokemonDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D4092B623AB30019A665 /* RHPokemonDemoAppUITests.swift */; };
 		D154D40C2B623AB30019A665 /* RHPokemonDemoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D40B2B623AB30019A665 /* RHPokemonDemoAppUITestsLaunchTests.swift */; };
+		D154D41D2B6242B80019A665 /* RHInterface in Frameworks */ = {isa = PBXBuildFile; productRef = D154D41C2B6242B80019A665 /* RHInterface */; };
+		D154D4202B62437C0019A665 /* RHNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = D154D41F2B62437C0019A665 /* RHNetwork */; };
+		D154D4232B6243BA0019A665 /* RHUIComponent in Frameworks */ = {isa = PBXBuildFile; productRef = D154D4222B6243BA0019A665 /* RHUIComponent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D154D41D2B6242B80019A665 /* RHInterface in Frameworks */,
+				D154D4232B6243BA0019A665 /* RHUIComponent in Frameworks */,
+				D154D4202B62437C0019A665 /* RHNetwork in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +143,11 @@
 			dependencies = (
 			);
 			name = RHPokemonDemoApp;
+			packageProductDependencies = (
+				D154D41C2B6242B80019A665 /* RHInterface */,
+				D154D41F2B62437C0019A665 /* RHNetwork */,
+				D154D4222B6243BA0019A665 /* RHUIComponent */,
+			);
 			productName = RHPokemonDemoApp;
 			productReference = D154D3E52B623AAF0019A665 /* RHPokemonDemoApp.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +220,12 @@
 				Base,
 			);
 			mainGroup = D154D3DC2B623AAF0019A665;
+			packageReferences = (
+				D154D41A2B6242A80019A665 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D154D41B2B6242B80019A665 /* XCRemoteSwiftPackageReference "RHInterface" */,
+				D154D41E2B62437C0019A665 /* XCRemoteSwiftPackageReference "RHNetwork" */,
+				D154D4212B6243BA0019A665 /* XCRemoteSwiftPackageReference "RHUIComponent" */,
+			);
 			productRefGroup = D154D3E62B623AAF0019A665 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -589,6 +606,59 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D154D41A2B6242A80019A665 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+		D154D41B2B6242B80019A665 /* XCRemoteSwiftPackageReference "RHInterface" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HsinChungHan/RHInterface.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		D154D41E2B62437C0019A665 /* XCRemoteSwiftPackageReference "RHNetwork" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HsinChungHan/RHNetwork.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		D154D4212B6243BA0019A665 /* XCRemoteSwiftPackageReference "RHUIComponent" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HsinChungHan/RHUIComponent.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D154D41C2B6242B80019A665 /* RHInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D154D41B2B6242B80019A665 /* XCRemoteSwiftPackageReference "RHInterface" */;
+			productName = RHInterface;
+		};
+		D154D41F2B62437C0019A665 /* RHNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D154D41E2B62437C0019A665 /* XCRemoteSwiftPackageReference "RHNetwork" */;
+			productName = RHNetwork;
+		};
+		D154D4222B6243BA0019A665 /* RHUIComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D154D4212B6243BA0019A665 /* XCRemoteSwiftPackageReference "RHUIComponent" */;
+			productName = RHUIComponent;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D154D3DD2B623AAF0019A665 /* Project object */;
 }

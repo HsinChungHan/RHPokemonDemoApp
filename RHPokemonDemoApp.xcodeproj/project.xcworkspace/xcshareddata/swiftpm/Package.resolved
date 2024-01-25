@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "rhinterface",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HsinChungHan/RHInterface.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ca0b327af9b526aa35c15f32b6955cd913df4a64"
+      }
+    },
+    {
+      "identity" : "rhnetwork",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HsinChungHan/RHNetwork.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "07855a7e976ba16d516d167c26a87fda13a2ecfc"
+      }
+    },
+    {
+      "identity" : "rhuicomponent",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HsinChungHan/RHUIComponent.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "2a24ef9edb2f0960828d626b825bfa5805c840ef"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "e74fe2a978d1216c3602b129447c7301573cc2d8",
+        "version" : "5.7.0"
+      }
+    }
+  ],
+  "version" : 2
+}

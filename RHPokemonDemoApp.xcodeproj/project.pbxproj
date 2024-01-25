@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		D154D3E92B623AAF0019A665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3E82B623AAF0019A665 /* AppDelegate.swift */; };
 		D154D3EB2B623AAF0019A665 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */; };
-		D154D3ED2B623AAF0019A665 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3EC2B623AAF0019A665 /* ViewController.swift */; };
-		D154D3F02B623AAF0019A665 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D154D3EE2B623AAF0019A665 /* Main.storyboard */; };
 		D154D3F22B623AB20019A665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D154D3F12B623AB20019A665 /* Assets.xcassets */; };
 		D154D3F52B623AB20019A665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D154D3F32B623AB20019A665 /* LaunchScreen.storyboard */; };
 		D154D4002B623AB30019A665 /* RHPokemonDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3FF2B623AB30019A665 /* RHPokemonDemoAppTests.swift */; };
@@ -39,8 +37,6 @@
 		D154D3E52B623AAF0019A665 /* RHPokemonDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHPokemonDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D154D3E82B623AAF0019A665 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D154D3EC2B623AAF0019A665 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D154D3EF2B623AAF0019A665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D154D3F12B623AB20019A665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D154D3F42B623AB20019A665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D154D3F62B623AB20019A665 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,8 +97,6 @@
 			children = (
 				D154D3E82B623AAF0019A665 /* AppDelegate.swift */,
 				D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */,
-				D154D3EC2B623AAF0019A665 /* ViewController.swift */,
-				D154D3EE2B623AAF0019A665 /* Main.storyboard */,
 				D154D3F12B623AB20019A665 /* Assets.xcassets */,
 				D154D3F32B623AB20019A665 /* LaunchScreen.storyboard */,
 				D154D3F62B623AB20019A665 /* Info.plist */,
@@ -233,7 +227,6 @@
 			files = (
 				D154D3F52B623AB20019A665 /* LaunchScreen.storyboard in Resources */,
 				D154D3F22B623AB20019A665 /* Assets.xcassets in Resources */,
-				D154D3F02B623AAF0019A665 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D154D3ED2B623AAF0019A665 /* ViewController.swift in Sources */,
 				D154D3E92B623AAF0019A665 /* AppDelegate.swift in Sources */,
 				D154D3EB2B623AAF0019A665 /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +289,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D154D3EE2B623AAF0019A665 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D154D3EF2B623AAF0019A665 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D154D3F32B623AB20019A665 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -446,8 +430,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RHPokemonDemoApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,8 +457,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RHPokemonDemoApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

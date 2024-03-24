@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "058448A8-CD7B-4DEC-81ED-361BE9971414"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B63ED922-B4E3-49B7-A44E-DD2C577AA0D6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RHPokemonDemoApp/PokemonsService/PokemonsCodableStoreService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "savePokemon(with:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B63ED922-B4E3-49B7-A44E-DD2C577AA0D6 - fe29e1abd244050c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RHPokemonDemoApp.PokemonsCodableStoreService.savePokemon(with: RHPokemonDemoApp.PokemonDTO, completion: (Swift.Result&lt;(), RHPokemonDemoApp.PokemonsCodableStoreServiceError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Documents/MyPackage/RHPokemonDemoApp/RHPokemonDemoApp/PokemonsService/PokemonsCodableStoreService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "385">
+               </Location>
+               <Location
+                  uuid = "B63ED922-B4E3-49B7-A44E-DD2C577AA0D6 - f2bae0974857a0aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(), RHCacheStore.CacheStoreError&gt;) -&gt; () in RHPokemonDemoApp.PokemonsCodableStoreService.savePokemon(with: RHPokemonDemoApp.PokemonDTO, completion: (Swift.Result&lt;(), RHPokemonDemoApp.PokemonsCodableStoreServiceError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Documents/MyPackage/RHPokemonDemoApp/RHPokemonDemoApp/PokemonsService/PokemonsCodableStoreService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "98">
+               </Location>
+               <Location
+                  uuid = "B63ED922-B4E3-49B7-A44E-DD2C577AA0D6 - da9c9fb1862b7a1a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RHPokemonDemoApp.PokemonsCodableStoreService.savePokemon(with: RHPokemonDemoApp.PokemonDTO, completion: (Swift.Result&lt;(), RHPokemonDemoApp.PokemonsCodableStoreServiceError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Downloads/RHPokemonDemoApp/RHPokemonDemoApp/PokemonsService/PokemonsCodableStoreService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "B63ED922-B4E3-49B7-A44E-DD2C577AA0D6 - d60f9e8d1c38dfbc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(), RHCacheStore.CacheStoreError&gt;) -&gt; () in RHPokemonDemoApp.PokemonsCodableStoreService.savePokemon(with: RHPokemonDemoApp.PokemonDTO, completion: (Swift.Result&lt;(), RHPokemonDemoApp.PokemonsCodableStoreServiceError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Downloads/RHPokemonDemoApp/RHPokemonDemoApp/PokemonsService/PokemonsCodableStoreService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA413A37-DB32-4FD5-AE8C-A0BF5982A002"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "retrieve(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BA413A37-DB32-4FD5-AE8C-A0BF5982A002 - e3c58acd3a5c3a63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for RHCacheStore.ActorCodableCacheStore.insert(with: Swift.String, json: Any) async throws -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "255">
+               </Location>
+               <Location
+                  uuid = "BA413A37-DB32-4FD5-AE8C-A0BF5982A002 - 50abfa2078591584"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for RHCacheStore.ActorCodableCacheStore.insert(with: Swift.String, json: Any) async throws -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "BA413A37-DB32-4FD5-AE8C-A0BF5982A002 - 4c22486a26c9be05"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for RHCacheStore.ActorCodableCacheStore.insert(with: Swift.String, json: Any) async throws -&gt; ()"
+                  moduleName = "RHPokemonDemoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chunghanhsin/Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "69">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE4C334E-1D4D-4CFC-9C38-629F1E43619A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "retrieve(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0AADA7B8-EDDC-4CF8-A9FF-0B4BBC8FB20A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "ActorCodableCacheStore"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4306679E-F2D1-4ED8-B91E-D9D2FDB952FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "loadCache()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "416309B7-9AA0-4952-9CA3-FD69DD86D20F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "loadCache()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C36CF8F-D167-41FF-A2D3-D3EACDC28497"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "saveCache()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3CE3AC69-ACE8-4B21-877E-3C8A4F870425"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "saveCache()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01B3AE62-8128-453C-B1F5-14E2B058C632"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/DataCodable/ActorVersion/ActorCodableCacheStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E8B0A3DE-C959-4404-91DE-F7137D4FCC29"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/RHPokemonDemoApp-emzlbottbvubvqdzesuqpdzffzhk/SourcePackages/checkouts/RHCacheStore/Sources/RHCacheStore/CodableImage/ActorCodableImageDataStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "retrieve(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

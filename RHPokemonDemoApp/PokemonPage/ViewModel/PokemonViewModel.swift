@@ -36,7 +36,7 @@ class PokemonViewModel {
             guard let self else { return }
             switch result {
             case let .success(pokemon):
-                downloadPokemonImage(with: pokemon.id, name: pokemon.name)
+                downloadPokemonImage(with: "\(pokemon.id)", name: pokemon.name)
 //                self.makeImage(with: pokemon.imgaeUrl) {
 //                    self.delegate?.pokemonViewModel(with: self, didLoad: $0)
 //                }
@@ -47,7 +47,7 @@ class PokemonViewModel {
         }
     }
     
-    func downloadPokemonImage(with id: Int, name: String) {
+    func downloadPokemonImage(with id: String, name: String) {
         useCase.downloadPokemonImage(with: "\(id)", name: name) { [weak self] result in
             guard let self else { return }
             switch result {

@@ -25,6 +25,8 @@ final class PokemonsViewController: UIViewController {
     lazy var usecase: PokemonsUseCaseProtocol = MainQueueDispatcherDecorator(decoratee: PokemonsUseCase(repository: respository))
     lazy var viewModel = PokemonsViewModel(useCase: usecase)
     lazy var tableView = makeTableView()
+    
+    let bgImageView = UIImageView(image: .init(named: "background"))
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -36,8 +38,11 @@ final class PokemonsViewController: UIViewController {
 // MARK: - Helpers
 extension PokemonsViewController {
     private func setupUI() {
-        navigationItem.title = "Pokemons"
-        view.backgroundColor = Color.Blue.v400
+        navigationItem.title = "Pokemon List"
+//        view.backgroundColor = Color.Blue.v400
+        view.addSubview(bgImageView)
+        
+        bgImageView.fillSuperView()
         view.addSubview(tableView)
         tableView.fillSuperViewWithSafeArea()
     }
@@ -47,6 +52,7 @@ extension PokemonsViewController {
 extension PokemonsViewController {
     private func makeTableView() -> UITableView {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellID")
         tableView.dataSource = self
         tableView.delegate = self
@@ -57,20 +63,21 @@ extension PokemonsViewController {
 // MARK: - UITableViewDataSource & UITableViewDelegate
 extension PokemonsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.pokemons.count
+        viewModel.pokemonNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
         cell.selectionStyle = .none
-        cell.textLabel?.text = viewModel.pokemons[indexPath.row].name
-        cell.textLabel?.textColor = Color.Neutral.v900
-        cell.backgroundColor = Color.Neutral.v200
+        cell.textLabel?.text = viewModel.pokemonNames[indexPath.row]
+        cell.textLabel?.textColor = Color.Neutral.v0
+        cell.textLabel?.font = .boldSystemFont(ofSize: 26)
+        cell.backgroundColor = .clear
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let pokemonName = viewModel.pokemons[indexPath.row].name
+        let pokemonName = viewModel.pokemonNames[indexPath.row]
         delegate?.coloredPokemonsViewController(self, didSelectPokemon: pokemonName)
     }
     
@@ -79,12 +86,11 @@ extension PokemonsViewController: UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - ColoredPokemonsViewModelDelegate
 extension PokemonsViewController: PokemonsViewModelDelegate {
-    func coloredPokemonsViewModel(_ coloredPokemonsViewModel: PokemonsViewModel, didGet blackPokemons: [PokemonData]) {
+    func coloredPokemonsViewModel(_ coloredPokemonsViewModel: PokemonsViewModel, didGet blackPokemons: [String]) {
         tableView.reloadData()
     }
     
     func coloredPokemonsViewModel(_ coloredPokemonsViewModel: PokemonsViewModel, didGet serviceError: PokemonNetworkServiceError) {
-        
     }
 }
 

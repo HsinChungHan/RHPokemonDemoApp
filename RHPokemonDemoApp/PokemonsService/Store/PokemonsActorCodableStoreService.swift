@@ -16,9 +16,32 @@ protocol PokemonsActorCodableStoreServiceProtocol {
 
 class PokemonsActorCodableStoreService: PokemonsActorCodableStoreServiceProtocol {
     let factory = RHCacheStoreAPIImplementationFactory()
-    lazy var store = factory.makeActorCodableStore(with: allPokemonsStoreURL)
-    
+    let store: RHActorCacheStoreAPIProtocol
+    init() {
+        let allPokemonsStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("allPokemons.json")
+        
+        store = factory.makeActorCodableStore(with: allPokemonsStoreURL)
+    }
     func loadAllPokemons(completion: @escaping (Result<PokemonsDTO, PokemonCacheStoreServiceError>) -> Void) {
+        Task {
+            let result = await store.retrieve(with: allPokemonsID)
+            switch result {
+            case let .found(json):
+                guard
+                    let json = json as? [String: Any],
+                    let pokemonsDTO: PokemonsDTO = JSONDecoder().toCodableObject(from: json)
+                else {
+                    completion(.failure(.failureLoad))
+                    return
+                }
+                completion(.success(pokemonsDTO))
+            default:
+                completion(.failure(.failureLoad))
+            }
+        }
+    }
+    
+    func loadPokemons(from prevEndIndex: Int = 0, perTimeLimit limit: Int = 10, completion: @escaping (Result<PokemonsDTO, PokemonCacheStoreServiceError>) -> Void) {
         Task {
             let result = await store.retrieve(with: allPokemonsID)
             switch result {
@@ -62,8 +85,4 @@ class PokemonsActorCodableStoreService: PokemonsActorCodableStoreServiceProtocol
 
 extension PokemonsActorCodableStoreService {
     var allPokemonsID: String { "allPokemons" }
-    
-    var allPokemonsStoreURL: URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("allPokemons.json")
-    }
 }

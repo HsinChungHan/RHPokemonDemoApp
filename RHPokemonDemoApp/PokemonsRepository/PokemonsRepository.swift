@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PokemonsRepositoryProtocol {
-    func loadPokemons(completion: @escaping (Result<PokemonsDomainModel, PokemonNetworkServiceError>) -> Void)
+    func loadAllPokemons(completion: @escaping (Result<PokemonsDomainModel, PokemonNetworkServiceError>) -> Void)
     func loadPokemon(with name: String, completion: @escaping (Result<PokemonDomainModel, PokemonNetworkServiceError>) -> Void)
     func downloadPokemonImage(with id: String, name: String, completion: @escaping (Result<Data, PokemonNetworkServiceError>) -> Void)
 }
@@ -34,7 +34,7 @@ class PokemonsRepository: PokemonsRepositoryProtocol {
         self.actorCodableImageDataStoreService = actorCodableImageDataStoreService
     }
     
-    func loadPokemons(completion: @escaping (Result<PokemonsDomainModel, PokemonNetworkServiceError>) -> Void) {
+    func loadAllPokemons(completion: @escaping (Result<PokemonsDomainModel, PokemonNetworkServiceError>) -> Void) {
         actorCodablePokemonsStoreService.loadAllPokemons { [weak self] result in
             guard let self else { return }
             switch result {

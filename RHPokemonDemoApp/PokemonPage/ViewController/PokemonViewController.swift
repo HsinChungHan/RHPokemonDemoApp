@@ -27,7 +27,7 @@ class PokemonViewController: UIViewController {
     lazy var nameLabel = makeLabel(with: "Name: ")
     lazy var weightLabel = makeLabel(with: "Weight: ")
     lazy var heightLabel = makeLabel(with: "Height: " )
-    
+    let bgImageView = UIImageView(image: .init(named: "background"))
     init(pokemonName: String) {
         super.init(nibName: nil, bundle: nil)
         viewModel.delegate = self
@@ -41,6 +41,7 @@ class PokemonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
         viewModel.loadPokemon()
     }
 }
@@ -75,8 +76,11 @@ extension PokemonViewController: PokemonViewModelDelegate {
 // MARK: - Helpers
 private extension PokemonViewController {
     func setupUI() {
-        view.backgroundColor = Color.Red.v400
+//        view.backgroundColor = Color.Red.v400
+        view.addSubview(bgImageView)
         view.addSubview(overallStackView)
+        
+        bgImageView.fillSuperView()
         overallStackView.fillSuperViewWithSafeArea(inset: .init(top: 16, left: 16, bottom: 16, right: 16))
         [imageView, idLabel, nameLabel, weightLabel, heightLabel].forEach { overallStackView.addArrangedSubview($0) }
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.0).isActive = true
@@ -91,6 +95,7 @@ private extension PokemonViewController {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.font = .boldSystemFont(ofSize: 24)
+        label.textColor = .white
         return label
     }
     

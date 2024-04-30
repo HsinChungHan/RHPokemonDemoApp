@@ -24,9 +24,23 @@ protocol PokemonsCodableStoreServiceProtocol {
 }
 
 class PokemonsCodableStoreService: PokemonsCodableStoreServiceProtocol {
-    lazy var pokemonStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonStoreURL, expiryTimeInterval: nil)
-    lazy var pokemonsStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonsStoreURL, expiryTimeInterval: nil)
-    lazy var pokemonPictureStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonPictureStoreURL, expiryTimeInterval: nil)
+    let pokemonStore: RHCacheStoreAPIProtocol
+    let pokemonsStore: RHCacheStoreAPIProtocol
+    let pokemonPictureStore: RHCacheStoreAPIProtocol
+
+    init() {
+        var pokemonStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon.store")
+        
+        var pokemonsStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemons.store")
+        
+        var pokemonPictureStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon_picture")
+        
+        pokemonStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonStoreURL, expiryTimeInterval: nil)
+        
+        pokemonsStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonsStoreURL, expiryTimeInterval: nil)
+        
+        pokemonPictureStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonPictureStoreURL, expiryTimeInterval: nil)
+    }
     
     func loadAllPokemons(completion: @escaping (Result<PokemonsDTO, PokemonsCodableStoreServiceError>) -> Void) {
         pokemonsStore.retrieve(with: "pokemons") { result in
@@ -114,20 +128,5 @@ class PokemonsCodableStoreService: PokemonsCodableStoreServiceProtocol {
                 completion(.failure(.failureToSaveError))
             }
         }
-    }
-}
-
-// MARK: - Computed Properties
-private extension PokemonsCodableStoreService {
-    var pokemonStoreURL: URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon.store")
-    }
-    
-    var pokemonsStoreURL: URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemons.store")
-    }
-    
-    var pokemonPictureStoreURL: URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon_picture")
     }
 }

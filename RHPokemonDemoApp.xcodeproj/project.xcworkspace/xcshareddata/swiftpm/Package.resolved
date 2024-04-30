@@ -15,7 +15,7 @@
       "location" : "https://github.com/HsinChungHan/RHCacheStore.git",
       "state" : {
         "branch" : "main",
-        "revision" : "c3b9412d6ac48ec3186a3d693e1f6da6913b8709"
+        "revision" : "f2501196bfda9ea3a3370a43c0d9f93526b942ea"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/HsinChungHan/RHNetwork.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d0e653227670d9025681ab400fabd19ea7f3f4b6"
+        "revision" : "3d85af75990090c50c01f3e0842a677944876e8e"
       }
     },
     {
@@ -51,7 +51,7 @@
       "location" : "https://github.com/HsinChungHan/RHNetworkAPI",
       "state" : {
         "branch" : "main",
-        "revision" : "7ca45548f78575e9717866f88d81736a9ee912cb"
+        "revision" : "46feda0cda105e94a34013f31bb2ed58753b7614"
       }
     },
     {

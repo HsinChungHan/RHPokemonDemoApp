@@ -16,8 +16,12 @@ protocol PokemonActorCodableImageStoreServiceProtocol {
 
 class PokemonActorCodableImageStoreService: PokemonActorCodableImageStoreServiceProtocol {
     let factory = RHCacheStoreAPIImplementationFactory()
-    lazy var store = factory.makeActorCodableImageDataStore(with: pokemonImageStoreURL)
+    let store: RHActorImageDataCacheStoreAPIProtocol
     
+    init() {
+        let pokemonImageStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        store = factory.makeActorCodableImageDataStore(with: pokemonImageStoreURL)
+    }
     func loadPokemon(with id: String, name: String, completion: @escaping (Result<Data, PokemonCacheStoreServiceError>) -> Void) {
         Task {
             let fileName = "\(id)_\(name)"
@@ -55,11 +59,5 @@ class PokemonActorCodableImageStoreService: PokemonActorCodableImageStoreService
                 completion(.failure(.failureDeletion))
             }
         }
-    }
-}
-
-extension PokemonActorCodableImageStoreService {
-    var pokemonImageStoreURL: URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
 }

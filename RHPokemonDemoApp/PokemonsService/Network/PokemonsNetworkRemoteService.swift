@@ -18,13 +18,19 @@ protocol PokenmonsNetworkServiceProtocol {
 
 class PokemonsNetworkRemoteService: PokenmonsNetworkServiceProtocol {
     let factory = RHNetworkAPIImplementationFactory()
-    lazy var dataNetworkAPI = factory.makeNonCacheClient(with: .init(string: "https://pokeapi.co/api/v2")!)
-/*svg
-    lazy var svgImageNetworkAPI = factory.makeNonCacheClient(with: .init(string: "https://raw.githubusercontent.com/PokeAPI")!)
-    let path = "/sprites/master/sprites/pokemon/other/dream-world/\(id).svg"
- */
-
-    lazy var imageNetworkAPI = factory.makeNonCacheClient(with: .init(string: "https://raw.githubusercontent.com")!, headers: headers)
+    let dataNetworkAPI: RHNetworkAPIProtocol
+    let imageNetworkAPI: RHNetworkAPIProtocol
+    
+    init() {
+        dataNetworkAPI = factory.makeNonCacheAndNoneUploadProgressClient(with: .init(string: "https://pokeapi.co/api/v2")!)
+        
+        let headers: [String : String] =
+            [
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
+            ]
+        
+        imageNetworkAPI = factory.makeNonCacheAndNoneUploadProgressClient(with: .init(string: "https://raw.githubusercontent.com")!, headers: headers)
+    }
     
     func loadAllPokemons(completion: @escaping (Result<PokemonsDTO, PokemonNetworkServiceError>) -> Void) {
         let path = "/pokemon"
@@ -45,7 +51,7 @@ class PokemonsNetworkRemoteService: PokenmonsNetworkServiceProtocol {
             }
         }
     }
-    
+//    https://pokeapi.co/api/v2/pokemon/{name}
     func loadPokemon(with name: String, completion: @escaping (Result<PokemonDTO, PokemonNetworkServiceError>) -> Void) {
         let path = "/pokemon/\(name)"
         dataNetworkAPI.get(path: path, queryItems: []) { result in
@@ -63,6 +69,7 @@ class PokemonsNetworkRemoteService: PokenmonsNetworkServiceProtocol {
         }
     }
     
+// https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/\(id).png
     func downloadPokemonImage(with id: String, completion: @escaping (Result<Data, PokemonNetworkServiceError>) -> Void) {
         let path = "/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/\(id).png"
         imageNetworkAPI.get(path: path, queryItems: []) { result in
@@ -73,13 +80,5 @@ class PokemonsNetworkRemoteService: PokenmonsNetworkServiceProtocol {
                 completion(.failure(.networkError))
             }
         }
-    }
-}
-
-extension PokemonsNetworkRemoteService {
-    var headers: [String : String] {
-        [
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
-        ]
     }
 }

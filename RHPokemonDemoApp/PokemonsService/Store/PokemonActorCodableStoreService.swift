@@ -16,7 +16,12 @@ protocol PokemonActorCodableStoreServiceProtocol {
 
 class PokemonActorCodableStoreService: PokemonActorCodableStoreServiceProtocol {
     let factory = RHCacheStoreAPIImplementationFactory()
-    lazy var store = factory.makeActorCodableStore(with: pokemonStoreURL)
+    let store: RHActorCacheStoreAPIProtocol
+    init() {
+        let pokemonStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon.json")
+    store = factory.makeActorCodableStore(with: pokemonStoreURL)
+        
+    }
     
     func loadPokemon(with name: String, completion: @escaping (Result<PokemonDTO, PokemonCacheStoreServiceError>) -> Void) {
         Task {

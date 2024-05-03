@@ -70,6 +70,7 @@ private extension PokemonCardCell {
         label.font = .boldSystemFont(ofSize: 22)
         label.textColor = .white
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }
     

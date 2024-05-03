@@ -20,7 +20,7 @@ protocol PokeCardDetailUseCaseDataSource: AnyObject {
 
 class PokeCardDetailUseCase {
     weak var delegate: PokeCardDetailUseCaseDelegate?
-    let offset = 10
+    let offset = 50
     
     var downloadImagesTaskGroup = DispatchGroup()
     var downloadDetailTaskGroup = DispatchGroup()
@@ -137,8 +137,8 @@ extension PokeCardDetailUseCase {
         repository.downloadPokemonImage(with: initialPokeInfo.uid, name: initialPokeInfo.name) {
             [weak self] result in
             DispatchQueue.main.async {
-                self?.downloadImagesTaskGroup.leave()
                 guard let self else { return }
+                self.downloadImagesTaskGroup.leave()
                 switch result {
                 case let .success(imageData):
                     self.delegate?.pokeCardDetailUseCase(self, imageDataDidDownload: imageData, ofPoekName: self.initialPokeInfo.name)
@@ -150,7 +150,6 @@ extension PokeCardDetailUseCase {
         downloadImagesTaskGroup.notify(queue: .main) { [weak self] in
             guard let self else { return }
             self.isDownloadingImage = false
-
         }
     }
     
@@ -188,8 +187,8 @@ extension PokeCardDetailUseCase {
             downloadImagesTaskGroup.enter()
             repository.downloadPokemonImage(with: pokeInfo.uid, name: pokeInfo.name) { [weak self] result in
                 DispatchQueue.main.async {
-                    self?.downloadImagesTaskGroup.leave()
                     guard let self else { return }
+                    self.downloadImagesTaskGroup.leave()
                     switch result {
                     case let .success(imageData):
                         self.delegate?.pokeCardDetailUseCase(self, imageDataDidDownload: imageData, ofPoekName: pokeInfo.name)
@@ -240,8 +239,8 @@ extension PokeCardDetailUseCase {
             downloadImagesTaskGroup.enter()
             repository.downloadPokemonImage(with: pokeInfo.uid, name: pokeInfo.name) { [weak self] result in
                 DispatchQueue.main.async {
-                    self?.downloadImagesTaskGroup.leave()
                     guard let self else { return }
+                    self.downloadImagesTaskGroup.leave()
                     switch result {
                     case let .success(imageData):
                         self.delegate?.pokeCardDetailUseCase(self, imageDataDidDownload: imageData, ofPoekName: pokeInfo.name)

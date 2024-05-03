@@ -20,7 +20,7 @@ class AllPokemonCardStyleUseCase {
     var originalAllPokemonInfos = [PokeInfo]()
     
     var allPokemonInfos = [PokeInfo]()
-    let offset = 10
+    let offset = 50
     
     var dispatchGroup = DispatchGroup()
     var currentPokemonLastIndex = 0
@@ -105,13 +105,12 @@ extension AllPokemonCardStyleUseCase {
             dispatchGroup.enter()
             repository.downloadPokemonImage(with: pokeInfo.uid, name: pokeInfo.name) { [weak self] result in
                 DispatchQueue.main.async {
-                    self?.dispatchGroup.leave()
                     guard let self else { return }
+                    self.dispatchGroup.leave()
                     switch result {
                     case let .success(imageData):
                         self.delegate?.allPokemonCardStyleUseCase(self, imageDataDidDownload: imageData, of: pokeInfo.name)
                     case .failure:
-                        self.dispatchGroup.leave()
                         return
                     }
                 }

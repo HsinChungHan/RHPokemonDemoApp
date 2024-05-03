@@ -41,7 +41,7 @@ class PokemonCardDetailViewController: UIViewController {
         [bgImageView, pokeCollectionView, uidLabel, heightView, weightView].forEach { view.addSubview($0) }
         bgImageView.fillSuperView()
         pokeCollectionView.constraint(top: view.safeAreaLayoutGuide.snp.top, centerX: view.snp.centerX, padding: .init(top: 32, left: 0, bottom: 0, right: 0), size: .init(width: UIScreen.main.bounds.width, height: 350))
-        uidLabel.constraint(top: pokeCollectionView.snp.bottom, leading: view.snp.leading, padding: .init(top: 32, left: 16, bottom: 0, right: 0), size: .init(width: 100, height: 32))
+        uidLabel.constraint(top: pokeCollectionView.snp.bottom, leading: view.snp.leading, padding: .init(top: 32, left: 16, bottom: 0, right: 0))
         heightView.constraint(top: uidLabel.snp.bottom, leading: uidLabel.snp.leading, padding: .init(top: 32, left: 0, bottom: 0, right: 0), size: .init(width: 170, height: 100))
         weightView.constraint(top: uidLabel.snp.bottom, trailing: view.snp.trailing, padding: .init(top: 32, left: 0, bottom: 0, right: 16), size: .init(width: 170, height: 100))
     }
@@ -148,31 +148,45 @@ extension PokemonCardDetailViewController: PokeCardDetailViewModelDelegate {
         pokeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
     }
     
-    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, previousPokeCellModelsDidUpdate pokeCellModels: [PokeCellModel]) {
-        pokeCollectionView.reloadData()
-        if 
-            let tmpPokeCellModelIndex {
-            let scrolledIndex = tmpPokeCellModelIndex + 1
-            scroll(to: scrolledIndex)
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, previousPokeCellModelsDidUpdate indexPaths: [IndexPath]) {
+        guard !indexPaths.isEmpty else { return }
+        pokeCollectionView.performBatchUpdates { [weak self] in
+            guard let self else { return }
+            self.pokeCollectionView.insertItems(at: indexPaths)
+        } completion: { [weak self] isFinished in
+            guard isFinished else { return }
+            guard let self else { return }
+            if
+                let tmpPokeCellModelIndex {
+                let scrolledIndex = tmpPokeCellModelIndex + 1
+                self.scroll(to: scrolledIndex)
+                self.viewModel.useCase.loadPreviousPokes()
+            }
         }
     }
     
-    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, followingPokeCellModelsDidUpdate pokeCellModels: [PokeCellModel]) {
-        pokeCollectionView.reloadData()
-        if
-            let tmpPokeCellModelIndex {
-            scroll(to: tmpPokeCellModelIndex - 1)
-            title = viewModel.pokeCellModels[tmpPokeCellModelIndex - 1].name
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, followingPokeCellModelsDidUpdate indexPaths: [IndexPath]) {
+        guard !indexPaths.isEmpty else { return }
+        pokeCollectionView.performBatchUpdates { [weak self] in
+            guard let self else { return }
+            self.pokeCollectionView.insertItems(at: indexPaths)
+        } completion: { [weak self] isFinished in
+            guard isFinished else { return }
+            guard let self else { return }
+            if
+                let tmpPokeCellModelIndex {
+                let scrolledIndex = tmpPokeCellModelIndex - 1
+                self.scroll(to: scrolledIndex)
+                self.viewModel.useCase.loadFollowingPokes()
+            }
         }
     }
-    
-    
     
     func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, pokemonImageDidUpdate imageData: Data, atIndex index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
-        pokeCollectionView.performBatchUpdates({
+        if let _ = pokeCollectionView.cellForItem(at: indexPath) {
             pokeCollectionView.reloadItems(at: [indexPath])
-        }, completion: nil)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -183,7 +197,7 @@ extension PokemonCardDetailViewController: PokeCardDetailViewModelDelegate {
             viewModel.loadFollowingPokes()
         }
         // 檢查當前顯示的 cell 是否為第一個
-        if indexPath.section == 0 && indexPath.item == 0 {
+        if indexPath.section == lastSectionIndex && indexPath.item == 0 {
             viewModel.loadPreviousPokes()
         }
     }

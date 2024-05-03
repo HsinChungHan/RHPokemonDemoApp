@@ -207,7 +207,7 @@ extension PokeCardDetailUseCase {
     }
     
     private func loadPreviousPokeDetails() {
-        if !followingNewPokemonInfos.isEmpty {
+        if !previousNewPokemonInfos.isEmpty {
             isDownloadingDetail = true
         }
         for pokeInfo in previousNewPokemonInfos {

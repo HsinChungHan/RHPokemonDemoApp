@@ -8,8 +8,8 @@
 import Foundation
 
 protocol PokeCardDetailViewModelDelegate: AnyObject {
-    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, previousPokeCellModelsDidUpdate pokeCellModels: [PokeCellModel])
-    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, followingPokeCellModelsDidUpdate pokeCellModels: [PokeCellModel])
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, previousPokeCellModelsDidUpdate indexPaths: [IndexPath])
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, followingPokeCellModelsDidUpdate indexPaths: [IndexPath])
     
     func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, pokemonImageDidUpdate imageData: Data, atIndex index: Int)
     
@@ -27,8 +27,9 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
     lazy var respository = PokemonsRepository(networkService: networkService, codableStoreService: codableStoreService, actorCodableStoreService: actorCodablePokemonStoreService, actorCodablePokemonsStoreService: actorCodablePokemonsStoreService, actorCodableImageDataStoreService: actorCodableImageDataStoreService)
     lazy var useCase = PokeCardDetailUseCase(repository: respository, dataSource: self)
     
+    
     var isDownloading: Bool {
-        useCase.isDownloadingImage && useCase.isDownloadingDetail
+        useCase.isDownloadingImage || useCase.isDownloadingDetail
     }
     
     var pokeCellModels = [PokeCellModel]()
@@ -56,7 +57,6 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
         if !useCase.followingNewPokemonInfos.isEmpty {
             tmpPokeCellModel = pokeCellModels.last
             insertNewFollowingPokes()
-            useCase.loadFollowingPokes()
         }
     }
     
@@ -65,18 +65,24 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
         if !useCase.previousNewPokemonInfos.isEmpty {
             tmpPokeCellModel = pokeCellModels.first
             insertNewPreviousPokes()
-            useCase.loadPreviousPokes()
         }
     }
     
     func insertNewFollowingPokes() {
-        pokeCellModels += useCase.followingNewPokemonInfos.map { .init(fromPokeInfo: $0) }
-        delegate?.pokeCardDetailViewModel(self, followingPokeCellModelsDidUpdate: pokeCellModels)
+        guard !useCase.followingNewPokemonInfos.isEmpty else { return }
+        let followingCellModels = useCase.followingNewPokemonInfos.map { PokeCellModel.init(fromPokeInfo: $0) }
+        let satrtIndex = pokeCellModels.count
+        pokeCellModels += followingCellModels
+        let endIndex = pokeCellModels.count - 1
+        let insertedIndexPaths = (satrtIndex...endIndex).map { IndexPath.init(row: $0, section: 0) }
+        delegate?.pokeCardDetailViewModel(self, followingPokeCellModelsDidUpdate: insertedIndexPaths)
     }
     
     func insertNewPreviousPokes() {
-        pokeCellModels = useCase.previousNewPokemonInfos.map { .init(fromPokeInfo: $0) } + pokeCellModels
-        delegate?.pokeCardDetailViewModel(self, previousPokeCellModelsDidUpdate: pokeCellModels)
+        let previousCellModels = useCase.previousNewPokemonInfos.map { PokeCellModel.init(fromPokeInfo: $0) }
+        pokeCellModels = previousCellModels + pokeCellModels
+        let insertedIndexPaths = (0...previousCellModels.count - 1).map { IndexPath(row: $0, section: 0) }
+        delegate?.pokeCardDetailViewModel(self, previousPokeCellModelsDidUpdate: insertedIndexPaths)
     }
     
     func getPokeInfo(with index: Int) -> PokeInfo {

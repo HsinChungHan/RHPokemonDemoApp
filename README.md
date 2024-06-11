@@ -1,8 +1,7 @@
-# My Projects
-
-## PokeDex
+# PokeDex
 
 ### HLD UML Diagram
+![截圖 2024-06-11 下午6 55 02](https://github.com/HsinChungHan/RHPokemonDemoApp/assets/38360195/7abcb201-7d62-4ab8-b26e-cce85ccead7b)
 [PokeDex HLD UML Diagram](https://drive.google.com/file/d/1rj64vxYIehiInN44wptd7_VTRQUSObk5/view?usp=sharing)
 
 ### Features

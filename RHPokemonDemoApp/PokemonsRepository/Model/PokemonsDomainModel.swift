@@ -16,8 +16,6 @@ struct PokeInfo: Equatable {
     }
 }
 
-
-
 struct PokemonsDomainModel {
     var pokeInfos: [PokeInfo] {
         pokemonsDTO.results.map {

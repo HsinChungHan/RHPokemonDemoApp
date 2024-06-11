@@ -15,7 +15,10 @@ protocol PokemonsRepositoryProtocol {
 
 class PokemonsRepository: PokemonsRepositoryProtocol {
     let networkService: PokenmonsNetworkServiceProtocol
+    // TODO: - For old UI style pages, should remove in the future
     let codableStoreService: PokemonsCodableStoreServiceProtocol
+    
+    // For new style UI
     let actorCodablePokemonStoreService: PokemonActorCodableStoreServiceProtocol
     let actorCodablePokemonsStoreService: PokemonsActorCodableStoreServiceProtocol
     let actorCodableImageDataStoreService: PokemonActorCodableImageStoreServiceProtocol
@@ -45,7 +48,7 @@ class PokemonsRepository: PokemonsRepositoryProtocol {
                     switch result {
                     case let .success(pokemonsDTO):
                         if let json = JSONEncoder().toJson(from: pokemonsDTO) {
-                            self.actorCodablePokemonsStoreService.savePokemons(with: json) { _ in }
+                            self.actorCodablePokemonsStoreService.insertPokemons(with: json) { _ in }
                         }
                         completion(.success(.init(from: pokemonsDTO)))
                     case let .failure(error):

@@ -14,6 +14,9 @@ protocol PokeCardDetailViewModelDelegate: AnyObject {
     func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, pokemonImageDidUpdate imageData: Data, atIndex index: Int)
     
     func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, pokeDetailDidDownload poekDetail: PokemonDomainModel)
+    
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, isFavoriteCurrentPoke: Bool)
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, isFavoritePokesAlreadySaved: Bool)
 }
 
 class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
@@ -38,7 +41,7 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
     var pokeCellModels = [PokeCellModel]()
     var allPokemonInfos: [PokeInfo]
     var tmpPokeCellModel: PokeCellModel?
-    
+    var currentDisplayPoke: PokemonDomainModel? = nil
     var initialPokeInfo: PokeInfo
     init(allPokemonInfos: [PokeInfo], initialPokeInfo: PokeInfo) {
         self.allPokemonInfos = allPokemonInfos
@@ -70,19 +73,13 @@ extension PokeCardDetailViewModel {
     func getPokemonDomainModel(with index: Int) -> PokemonDomainModel? {
         let cellModel = pokeCellModels[index]
         let uid = cellModel.uid
-        return useCase.allPokemonDetailDict[uid]
+        currentDisplayPoke = useCase.allPokemonDetailDict[uid]
+        return currentDisplayPoke
     }
     
-    func likePokemon(with index: Int) {
-        let cellModel = pokeCellModels[index]
-        guard let uid = Int(cellModel.uid) else { return }
-        useCase.addFavoritePoke(withId: uid)
-    }
-    
-    func dislikePokemon(with index: Int) {
-        let cellModel = pokeCellModels[index]
-        guard let uid = Int(cellModel.uid) else { return }
-        useCase.removeFavoritePoke(withId: uid)
+    func favoritePokemon(withIndexPath indexPath: IndexPath) {
+        guard let id = getPokemonDomainModel(with: indexPath.row)?.id else { return }
+        useCase.favoritePoke(withId: id)    
     }
 }
 
@@ -111,15 +108,19 @@ private extension PokeCardDetailViewModel {
         let insertedIndexPaths = (0...previousCellModels.count - 1).map { IndexPath(row: $0, section: 0) }
         delegate?.pokeCardDetailViewModel(self, previousPokeCellModelsDidUpdate: insertedIndexPaths)
     }
-    
-    func getPokeInfo(with index: Int) -> PokeInfo {
-        let cellModel = pokeCellModels[index]
-        let uid = cellModel.uid
-        return allPokemonInfos.first { $0.uid == uid }!
-    }
 }
 
 extension PokeCardDetailViewModel: PokeCardDetailUseCaseDelegate {
+    func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, isFavoritePokesAlreadySaved: Bool) {
+        delegate?.pokeCardDetailViewModel(self, isFavoritePokesAlreadySaved: isFavoritePokesAlreadySaved)
+    }
+    
+    func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, shouldFavoritePokemon: Bool, toPokeID id: Int) {
+        if let currentDisplayPokeID = currentDisplayPoke?.id, currentDisplayPokeID == id {
+            delegate?.pokeCardDetailViewModel(self, isFavoriteCurrentPoke: shouldFavoritePokemon)
+        }
+    }
+    
     func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, favoritePokesDidUpdate ids: [Int]) {}
     
     func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, pokeDetailDidDownload poekDetail: PokemonDomainModel) {

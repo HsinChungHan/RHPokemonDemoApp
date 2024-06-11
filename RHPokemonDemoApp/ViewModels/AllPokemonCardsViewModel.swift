@@ -122,7 +122,7 @@ extension AllPokemonCardsViewModel: AllPokemonCardStyleUseCaseDelegate {
         loadNewPokemons()
     }
     
-    func allPokemonCardStyleUseCase(_ allPokemonCardStyleUseCase: AllPokemonCardStyleUseCase, imageDataDidDownload imageData: Data, of name: String) {
+    func allPokemonCardStyleUseCase(_ allPokemonCardStyleUseCase: AllPokemonCardStyleUseCase, imageDataDidDownload imageData: Data, ofName name: String) {
          let targetCellIndex = pokeCellModels.firstIndex { $0.name == name }
         guard let targetCellIndex else { return }
         pokeCellModels[targetCellIndex].imageData = imageData

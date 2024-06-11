@@ -10,7 +10,7 @@ import Foundation
 protocol AllPokemonCardStyleUseCaseDelegate: AnyObject {
     func allPokemonCardStyleUseCase(_ allPokemonCardStyleUseCase: AllPokemonCardStyleUseCase, pokemonInfoListDidLoad pokemonInfos: [PokeInfo])
     
-    func allPokemonCardStyleUseCase(_ allPokemonCardStyleUseCase: AllPokemonCardStyleUseCase, imageDataDidDownload imageData: Data, of name: String)
+    func allPokemonCardStyleUseCase(_ allPokemonCardStyleUseCase: AllPokemonCardStyleUseCase, imageDataDidDownload imageData: Data, ofName name: String)
 }
 
 class AllPokemonCardStyleUseCase {
@@ -109,7 +109,7 @@ extension AllPokemonCardStyleUseCase {
                     self.dispatchGroup.leave()
                     switch result {
                     case let .success(imageData):
-                        self.delegate?.allPokemonCardStyleUseCase(self, imageDataDidDownload: imageData, of: pokeInfo.name)
+                        self.delegate?.allPokemonCardStyleUseCase(self, imageDataDidDownload: imageData, ofName: pokeInfo.name)
                     case .failure:
                         return
                     }

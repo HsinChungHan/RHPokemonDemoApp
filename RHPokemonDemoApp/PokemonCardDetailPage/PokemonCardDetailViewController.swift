@@ -14,6 +14,7 @@ class PokemonCardDetailViewController: UIViewController {
     lazy var uidLabel = makeIDLabel()
     lazy var heightView = makePropertyView()
     lazy var weightView = makePropertyView()
+    lazy var favoriteButton = makeFavoriteButton()
     
     let bgImageView = UIImageView(image: .init(named: "background"))
     let allPokemonInfos: [PokeInfo]
@@ -38,12 +39,13 @@ class PokemonCardDetailViewController: UIViewController {
     }
     
     func setupLayout() {
-        [bgImageView, pokeCollectionView, uidLabel, heightView, weightView].forEach { view.addSubview($0) }
+        [bgImageView, pokeCollectionView, uidLabel, heightView, weightView, favoriteButton].forEach { view.addSubview($0) }
         bgImageView.fillSuperView()
         pokeCollectionView.constraint(top: view.safeAreaLayoutGuide.snp.top, centerX: view.snp.centerX, padding: .init(top: 32, left: 0, bottom: 0, right: 0), size: .init(width: UIScreen.main.bounds.width, height: 350))
         uidLabel.constraint(top: pokeCollectionView.snp.bottom, leading: view.snp.leading, padding: .init(top: 32, left: 16, bottom: 0, right: 0))
         heightView.constraint(top: uidLabel.snp.bottom, leading: uidLabel.snp.leading, padding: .init(top: 32, left: 0, bottom: 0, right: 0), size: .init(width: 170, height: 100))
         weightView.constraint(top: uidLabel.snp.bottom, trailing: view.snp.trailing, padding: .init(top: 32, left: 0, bottom: 0, right: 16), size: .init(width: 170, height: 100))
+        favoriteButton.constraint(top: weightView.snp.bottom, centerX: view.snp.centerX, padding: .init(top: 16, left: 0, bottom: 0, right: 0), size: .init(width: 44, height: 44))
     }
 }
 
@@ -77,6 +79,22 @@ private extension PokemonCardDetailViewController {
         let view = PropertyView()
         return view
     }
+    
+    func makeFavoriteButton() -> UIButton {
+        let button = UIButton()
+        button.setImage(.init(named: "heart")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
+        return button
+    }
+    
+    @objc private func didTapFavoriteButton(sender: UIButton) {
+        if
+            let layout = pokeCollectionView.collectionViewLayout as? AnimatedGridCardFlowLayout,
+            let indexPath = layout.indexPathForCenteredVisibleCell() {
+            sender.isUserInteractionEnabled = false
+            viewModel.favoritePokemon(withIndexPath: indexPath)
+        }
+    }
 }
 
 private extension PokemonCardDetailViewController {
@@ -94,6 +112,11 @@ private extension PokemonCardDetailViewController {
             uidLabel.text = "NO.\(pokemon.id)"
             heightView.configureView(with: .init(icon: "height", title: "Height", value: "\(pokemon.meterHeight)"))
             weightView.configureView(with: .init(icon: "weight", title: "Weight", value: "\(pokemon.kgWeight)"))
+            if pokemon.isFavorite {
+                favoriteButton.tintColor = .red
+            } else {
+                favoriteButton.tintColor = .white
+            }
         }
     }
 }
@@ -122,6 +145,20 @@ extension PokemonCardDetailViewController: UICollectionViewDataSource {
 }
 
 extension PokemonCardDetailViewController: PokeCardDetailViewModelDelegate {
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, isFavoritePokesAlreadySaved: Bool) {
+        if isFavoritePokesAlreadySaved {
+            favoriteButton.isUserInteractionEnabled = true
+        }
+    }
+    
+    func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, isFavoriteCurrentPoke: Bool) {
+        if isFavoriteCurrentPoke {
+            favoriteButton.tintColor = .red
+        } else {
+            favoriteButton.tintColor = .white
+        }
+    }
+    
     func pokeCardDetailViewModel(_ viewModel: PokeCardDetailViewModel, pokeDetailDidDownload poekDetail: PokemonDomainModel) {
         if
             let layout = pokeCollectionView.collectionViewLayout as? AnimatedGridCardFlowLayout,

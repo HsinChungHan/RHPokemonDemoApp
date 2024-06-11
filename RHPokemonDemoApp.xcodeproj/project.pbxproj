@@ -42,8 +42,6 @@
 		D155561C2B6AA9EC006370B8 /* PokemonNetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D155561B2B6AA9EC006370B8 /* PokemonNetworkServiceError.swift */; };
 		D155561F2B6B57F3006370B8 /* PokemonsActorCodableStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D155561E2B6B57F3006370B8 /* PokemonsActorCodableStoreService.swift */; };
 		D17E2D612BDC1AD3000DED6A /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E2D602BDC1AD3000DED6A /* PropertyView.swift */; };
-		D1B2A1222B64282A0008B380 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = D1B2A1212B64282A0008B380 /* SVGKit */; };
-		D1B2A1242B64282A0008B380 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1B2A1232B64282A0008B380 /* SVGKitSwift */; };
 		D1CBD52C2BD18D62007EE519 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CBD52B2BD18D62007EE519 /* Array+Extension.swift */; };
 		D1CBD5322BD246A3007EE519 /* AnimatedGridCardFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CBD5312BD246A3007EE519 /* AnimatedGridCardFlowLayout.swift */; };
 		D1CBD5342BD246C7007EE519 /* PokemonCardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CBD5332BD246C7007EE519 /* PokemonCardDetailViewController.swift */; };
@@ -128,8 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1B2A1242B64282A0008B380 /* SVGKitSwift in Frameworks */,
-				D1B2A1222B64282A0008B380 /* SVGKit in Frameworks */,
 				D154D41D2B6242B80019A665 /* RHInterface in Frameworks */,
 				D11095E32B656BEA00AF81BF /* RHCacheStore in Frameworks */,
 				D11095E62B6574F600AF81BF /* RHCacheStoreAPI in Frameworks */,
@@ -404,8 +400,6 @@
 				D154D41F2B62437C0019A665 /* RHNetwork */,
 				D154D4222B6243BA0019A665 /* RHUIComponent */,
 				D154D42E2B6262880019A665 /* RHNetworkAPI */,
-				D1B2A1212B64282A0008B380 /* SVGKit */,
-				D1B2A1232B64282A0008B380 /* SVGKitSwift */,
 				D11095E22B656BEA00AF81BF /* RHCacheStore */,
 				D11095E52B6574F600AF81BF /* RHCacheStoreAPI */,
 			);
@@ -487,7 +481,6 @@
 				D154D41E2B62437C0019A665 /* XCRemoteSwiftPackageReference "RHNetwork" */,
 				D154D4212B6243BA0019A665 /* XCRemoteSwiftPackageReference "RHUIComponent" */,
 				D154D42D2B6262880019A665 /* XCRemoteSwiftPackageReference "RHNetworkAPI" */,
-				D1B2A11F2B6427F00008B380 /* XCRemoteSwiftPackageReference "SVGKit" */,
 				D11095E12B656BEA00AF81BF /* XCRemoteSwiftPackageReference "RHCacheStore" */,
 				D11095E42B6574F600AF81BF /* XCRemoteSwiftPackageReference "RHCacheStoreAPI" */,
 			);
@@ -963,14 +956,6 @@
 				kind = branch;
 			};
 		};
-		D1B2A11F2B6427F00008B380 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SVGKit/SVGKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1003,16 +988,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D154D42D2B6262880019A665 /* XCRemoteSwiftPackageReference "RHNetworkAPI" */;
 			productName = RHNetworkAPI;
-		};
-		D1B2A1212B64282A0008B380 /* SVGKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D1B2A11F2B6427F00008B380 /* XCRemoteSwiftPackageReference "SVGKit" */;
-			productName = SVGKit;
-		};
-		D1B2A1232B64282A0008B380 /* SVGKitSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D1B2A11F2B6427F00008B380 /* XCRemoteSwiftPackageReference "SVGKit" */;
-			productName = SVGKitSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

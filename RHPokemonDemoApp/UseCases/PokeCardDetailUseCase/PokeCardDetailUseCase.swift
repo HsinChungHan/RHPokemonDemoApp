@@ -107,8 +107,8 @@ extension PokeCardDetailUseCase {
 }
 
 // MARK: - Helpers
-extension PokeCardDetailUseCase {
-    private func loadInitialPokeDetail() {
+private extension PokeCardDetailUseCase {
+    func loadInitialPokeDetail() {
         isDownloadingDetail = true
         downloadDetailTaskGroup.enter()
         repository.loadPokemon(with: initialPokeInfo.name) { [weak self] result in
@@ -131,7 +131,7 @@ extension PokeCardDetailUseCase {
         }
     }
     
-    private func loadInitialPokeImage() {
+    func loadInitialPokeImage() {
         isDownloadingImage = true
         downloadImagesTaskGroup.enter()
         repository.downloadPokemonImage(with: initialPokeInfo.uid, name: initialPokeInfo.name) {
@@ -153,7 +153,7 @@ extension PokeCardDetailUseCase {
         }
     }
     
-    private func loadFollowingPokeDetails() {
+    func loadFollowingPokeDetails() {
         if !followingNewPokemonInfos.isEmpty {
             isDownloadingDetail = true
         }
@@ -179,7 +179,7 @@ extension PokeCardDetailUseCase {
         }
     }
     
-    private func loadFollowingImages() {
+    func loadFollowingImages() {
         if !followingNewPokemonInfos.isEmpty {
             isDownloadingImage = true
         }
@@ -205,7 +205,7 @@ extension PokeCardDetailUseCase {
         }
     }
     
-    private func loadPreviousPokeDetails() {
+    func loadPreviousPokeDetails() {
         if !previousNewPokemonInfos.isEmpty {
             isDownloadingDetail = true
         }
@@ -231,7 +231,7 @@ extension PokeCardDetailUseCase {
         }
     }
     
-    private func loadPreviousImages() {
+    func loadPreviousImages() {
         if !previousNewPokemonInfos.isEmpty {
             isDownloadingImage = true
         }

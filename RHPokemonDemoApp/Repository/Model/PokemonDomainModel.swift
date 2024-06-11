@@ -31,7 +31,7 @@ struct PokemonDomainModel {
     }
 }
 
-extension PokemonDomainModel {
+private extension PokemonDomainModel {
     func formatToDecimalPlace(value: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal

@@ -8,8 +8,7 @@
 import Foundation
 protocol FavoritePokemonsRepositoryProtocol {
     func loadFavoritePokes(completion: @escaping (Result<FavoritePokemonsDomainModel, PokemonCacheStoreServiceError>) -> Void)
-    func updateFavoritePokes(withFavorites favoritePokemons: FavoritePokemonsDomainModel, completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void)
-}
+    func updateFavoritePokes(withIDs ids: [Int], completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void)}
 
 class FavoritePokemonsRepository: FavoritePokemonsRepositoryProtocol {
     let storeService: FavoritePokemonsStoreServiceProtocol
@@ -30,8 +29,8 @@ class FavoritePokemonsRepository: FavoritePokemonsRepositoryProtocol {
         }
     }
     
-    func updateFavoritePokes(withFavorites favoritePokemons: FavoritePokemonsDomainModel, completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void) {
-        let json: [String: Any] = ["ids": favoritePokemons.ids]
+    func updateFavoritePokes(withIDs ids: [Int], completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void) {
+        let json: [String: Any] = ["ids": ids]
         storeService.insert(with: json) { result in
             switch result {
             case .success(_):

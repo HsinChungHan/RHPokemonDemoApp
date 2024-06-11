@@ -25,8 +25,11 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
     let actorCodablePokemonsStoreService = PokemonsActorCodableStoreService()
     let actorCodableImageDataStoreService = PokemonActorCodableImageStoreService()
     lazy var respository = PokemonsRepository(networkService: networkService, codableStoreService: codableStoreService, actorCodableStoreService: actorCodablePokemonStoreService, actorCodablePokemonsStoreService: actorCodablePokemonsStoreService, actorCodableImageDataStoreService: actorCodableImageDataStoreService)
-    lazy var useCase = PokeCardDetailUseCase(repository: respository, dataSource: self)
     
+    // [gogolook]
+    let favoriteStore = FavoritePokemonsStoreService()
+    lazy var favoriteRepo = FavoritePokemonsRepository(storeService: favoriteStore)
+    lazy var useCase = PokeCardDetailUseCase(favoritePokesRepo: favoriteRepo, repository: respository, dataSource: self)
     
     var isDownloading: Bool {
         useCase.isDownloadingImage || useCase.isDownloadingDetail
@@ -44,14 +47,10 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
         pokeCellModels.append(.init(fromPokeInfo: initialPokeInfo))
         firstLoadPokes()
     }
-    
-    func firstLoadPokes() {
-        if isDownloading { return }
-        insertNewPreviousPokes()
-        insertNewFollowingPokes()
-        useCase.firstLoadEssentialPokes()
-    }
-    
+}
+
+// MARK: - API
+extension PokeCardDetailViewModel {
     func loadFollowingPokes() {
         if isDownloading { return }
         if !useCase.followingNewPokemonInfos.isEmpty {
@@ -66,6 +65,33 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
             tmpPokeCellModel = pokeCellModels.first
             insertNewPreviousPokes()
         }
+    }
+    
+    func getPokemonDomainModel(with index: Int) -> PokemonDomainModel? {
+        let cellModel = pokeCellModels[index]
+        let uid = cellModel.uid
+        return useCase.allPokemonDetailDict[uid]
+    }
+    
+    func likePokemon(with index: Int) {
+        let cellModel = pokeCellModels[index]
+        guard let uid = Int(cellModel.uid) else { return }
+        useCase.addFavoritePoke(withId: uid)
+    }
+    
+    func dislikePokemon(with index: Int) {
+        let cellModel = pokeCellModels[index]
+        guard let uid = Int(cellModel.uid) else { return }
+        useCase.removeFavoritePoke(withId: uid)
+    }
+}
+
+private extension PokeCardDetailViewModel {
+    func firstLoadPokes() {
+        if isDownloading { return }
+        insertNewPreviousPokes()
+        insertNewFollowingPokes()
+        useCase.firstLoadEssentialPokes()
     }
     
     func insertNewFollowingPokes() {
@@ -91,15 +117,11 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
         let uid = cellModel.uid
         return allPokemonInfos.first { $0.uid == uid }!
     }
-    
-    func getPokemonDomainModel(with index: Int) -> PokemonDomainModel? {
-        let cellModel = pokeCellModels[index]
-        let uid = cellModel.uid
-        return useCase.allPokemonDetailDict[uid]
-    }
 }
 
 extension PokeCardDetailViewModel: PokeCardDetailUseCaseDelegate {
+    func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, favoritePokesDidUpdate ids: [Int]) {}
+    
     func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, pokeDetailDidDownload poekDetail: PokemonDomainModel) {
         delegate?.pokeCardDetailViewModel(self, pokeDetailDidDownload: poekDetail)
     }

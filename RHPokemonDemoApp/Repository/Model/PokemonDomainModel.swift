@@ -13,6 +13,9 @@ struct PokemonDomainModel {
     let weight: Int
     let height: Int
     let imgaeUrl: URL?
+    
+    // gogolook feature
+    var isFavorite = false
     // Mapper
     init(from dto: PokemonDTO) {
         self.name = dto.name

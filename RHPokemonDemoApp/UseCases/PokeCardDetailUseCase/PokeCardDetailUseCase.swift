@@ -11,6 +11,8 @@ protocol PokeCardDetailUseCaseDelegate: AnyObject {
     func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, imageDataDidDownload imageData: Data, ofPoekName name: String)
     
     func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, pokeDetailDidDownload poekDetail: PokemonDomainModel)
+    
+    func pokeCardDetailUseCase(_ useCase: PokeCardDetailUseCase, favoritePokesDidUpdate ids: [Int])
 }
 
 protocol PokeCardDetailUseCaseDataSource: AnyObject {
@@ -26,6 +28,7 @@ class PokeCardDetailUseCase {
     var downloadDetailTaskGroup = DispatchGroup()
     var isDownloadingImage = false
     var isDownloadingDetail = false
+    var favoritePokeIDs = [Int]()
     
     var previousNewPokemonRanges: ClosedRange<Int>? {
         if currentStartIndex <= 0 {
@@ -70,8 +73,12 @@ class PokeCardDetailUseCase {
     var currentEndIndex: Int
     var currentStartIndex: Int
     let repository: PokemonsRepositoryProtocol
-    init(repository: PokemonsRepositoryProtocol, dataSource: PokeCardDetailUseCaseDataSource) {
+    
+    // [gogolook]
+    let favoritePokesRepo: FavoritePokemonsRepositoryProtocol
+    init(favoritePokesRepo: FavoritePokemonsRepositoryProtocol, repository: PokemonsRepositoryProtocol, dataSource: PokeCardDetailUseCaseDataSource) {
         self.repository = repository
+        self.favoritePokesRepo = favoritePokesRepo
         allPokemonInfos = dataSource.allPokemonInfos
         initialPokeInfo = dataSource.initialPokeInfo
         
@@ -84,6 +91,7 @@ class PokeCardDetailUseCase {
 extension PokeCardDetailUseCase {
     // 第一次要把 initial pokemon + 前後各 10 隻的 pokemon 圖片 load 完
     func firstLoadEssentialPokes() {
+        loadFavorites()
         if isDownloadingImage && isDownloadingDetail { return }
         loadInitialPoke()
         loadFollowingPokes()
@@ -104,10 +112,43 @@ extension PokeCardDetailUseCase {
         loadPreviousImages()
         loadPreviousPokeDetails()
     }
+    
+    func addFavoritePoke(withId id: Int) {
+        favoritePokeIDs.append(id)
+        favoritePokesRepo.updateFavoritePokes(withIDs: favoritePokeIDs) { _ in }
+    }
+    
+    func removeFavoritePoke(withId id: Int) {
+        favoritePokeIDs.removeAll(where: { $0 == id})
+        favoritePokesRepo.updateFavoritePokes(withIDs: favoritePokeIDs) { _ in }
+    }
 }
 
 // MARK: - Helpers
 private extension PokeCardDetailUseCase {
+    func setAllPokemonDetailDict(pokemon: PokemonDomainModel) {
+        var pokemon = pokemon
+        let id = pokemon.id
+        if favoritePokeIDs.contains(where: { $0 == id}) {
+            pokemon.isFavorite = true
+        }
+        self.allPokemonDetailDict["\(id)"] = pokemon
+    }
+    
+    func loadFavorites() {
+        favoritePokesRepo.loadFavoritePokes { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case let .success(favoritePokes):
+                self.favoritePokeIDs = favoritePokes.ids
+                self.delegate?.pokeCardDetailUseCase(self, favoritePokesDidUpdate: self.favoritePokeIDs)
+            default:
+                // TODO: - pass through error
+                return
+            }
+        }
+    }
+    
     func loadInitialPokeDetail() {
         isDownloadingDetail = true
         downloadDetailTaskGroup.enter()
@@ -117,7 +158,7 @@ private extension PokeCardDetailUseCase {
                 self.downloadDetailTaskGroup.leave()
                 switch result {
                 case let .success(pokemon):
-                    self.allPokemonDetailDict["\(pokemon.id)"] = pokemon
+                    self.setAllPokemonDetailDict(pokemon: pokemon)
                     self.delegate?.pokeCardDetailUseCase(self, pokeDetailDidDownload: pokemon)
                 case .failure:
                     return
@@ -165,7 +206,7 @@ private extension PokeCardDetailUseCase {
                     self.downloadDetailTaskGroup.leave()
                     switch result {
                     case let .success(pokemon):
-                        self.allPokemonDetailDict["\(pokemon.id)"] = pokemon
+                        self.setAllPokemonDetailDict(pokemon: pokemon)
                         self.delegate?.pokeCardDetailUseCase(self, pokeDetailDidDownload: pokemon)
                     case .failure:
                         return
@@ -217,7 +258,7 @@ private extension PokeCardDetailUseCase {
                     self.downloadDetailTaskGroup.leave()
                     switch result {
                     case let .success(pokemon):
-                        self.allPokemonDetailDict["\(pokemon.id)"] = pokemon
+                        self.setAllPokemonDetailDict(pokemon: pokemon)
                         self.delegate?.pokeCardDetailUseCase(self, pokeDetailDidDownload: pokemon)
                     case .failure:
                         return

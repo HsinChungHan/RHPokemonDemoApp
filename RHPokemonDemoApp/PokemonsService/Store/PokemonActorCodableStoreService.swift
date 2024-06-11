@@ -19,8 +19,7 @@ class PokemonActorCodableStoreService: PokemonActorCodableStoreServiceProtocol {
     let store: RHActorCacheStoreAPIProtocol
     init() {
         let pokemonStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon.json")
-    store = factory.makeActorCodableStore(with: pokemonStoreURL)
-        
+        store = factory.makeActorCodableStore(with: pokemonStoreURL)
     }
     
     func loadPokemon(with name: String, completion: @escaping (Result<PokemonDTO, PokemonCacheStoreServiceError>) -> Void) {

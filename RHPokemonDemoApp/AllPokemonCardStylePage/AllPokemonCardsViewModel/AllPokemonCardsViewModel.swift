@@ -80,7 +80,7 @@ private extension AllPokemonCardsViewModel {
         shouldRemoveCellModels = pokeCellModels
         
         // Remove filtered models
-        var newCellModels = useCase.newPokemonInfos.map { PokeCellModel.init(name: $0.name, uid: $0.uid) }
+        let newCellModels = useCase.newPokemonInfos.map { PokeCellModel.init(name: $0.name, uid: $0.uid) }
         
         let newPokeCellModelUIDs = Set(newCellModels.map { $0.uid })
         var shouldRemoveIndices = [IndexPath]()

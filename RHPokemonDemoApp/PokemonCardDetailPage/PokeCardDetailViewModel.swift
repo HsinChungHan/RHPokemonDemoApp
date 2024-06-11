@@ -79,6 +79,7 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
     }
     
     func insertNewPreviousPokes() {
+        guard !useCase.previousNewPokemonInfos.isEmpty else { return }
         let previousCellModels = useCase.previousNewPokemonInfos.map { PokeCellModel.init(fromPokeInfo: $0) }
         pokeCellModels = previousCellModels + pokeCellModels
         let insertedIndexPaths = (0...previousCellModels.count - 1).map { IndexPath(row: $0, section: 0) }

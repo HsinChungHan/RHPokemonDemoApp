@@ -8,8 +8,6 @@
 import Foundation
 import RHNetworkAPI
 
-
-
 protocol PokenmonsNetworkServiceProtocol {
     func loadAllPokemons(completion: @escaping (Result<PokemonsDTO, PokemonNetworkServiceError>) -> Void)
     func loadPokemon(with name: String, completion: @escaping (Result<PokemonDTO, PokemonNetworkServiceError>) -> Void)

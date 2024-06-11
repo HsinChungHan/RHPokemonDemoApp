@@ -29,11 +29,11 @@ class PokemonsCodableStoreService: PokemonsCodableStoreServiceProtocol {
     let pokemonPictureStore: RHCacheStoreAPIProtocol
 
     init() {
-        var pokemonStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon.store")
+        let pokemonStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon.store")
         
-        var pokemonsStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemons.store")
+        let pokemonsStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemons.store")
         
-        var pokemonPictureStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon_picture")
+        let pokemonPictureStoreURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("pokemon_picture")
         
         pokemonStore = RHCacheStoreAPIImplementationFactory().makeCodableStore(with: pokemonStoreURL, expiryTimeInterval: nil)
         

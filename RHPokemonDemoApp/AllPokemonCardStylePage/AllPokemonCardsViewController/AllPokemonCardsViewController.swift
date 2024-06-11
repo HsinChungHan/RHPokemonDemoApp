@@ -112,14 +112,14 @@ extension AllPokemonCardsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastSectionIndex = collectionView.numberOfSections - 1
-            let lastItemIndex = collectionView.numberOfItems(inSection: lastSectionIndex) - 1
-            // 檢查當前顯示的項目是否為最後一個
-            if indexPath.section == lastSectionIndex && indexPath.item == lastItemIndex {
-                // 檢查是否正在加載新的數據
-                if !viewModel.isLoadingNewPokes && !viewModel.isDownloadingImages {
-                    viewModel.loadNewPokemons()
-                }
+        let lastItemIndex = collectionView.numberOfItems(inSection: lastSectionIndex) - 1
+        // 檢查當前顯示的項目是否為最後一個
+        if indexPath.section == lastSectionIndex && indexPath.item == lastItemIndex {
+            // 檢查是否正在加載新的數據
+            if !viewModel.isLoadingNewPokes && !viewModel.isDownloadingImages {
+                viewModel.loadNewPokemons()
             }
+        }
     }
 }
 

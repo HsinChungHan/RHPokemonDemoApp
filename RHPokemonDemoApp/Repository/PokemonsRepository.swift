@@ -15,23 +15,17 @@ protocol PokemonsRepositoryProtocol {
 
 class PokemonsRepository: PokemonsRepositoryProtocol {
     let networkService: PokenmonsNetworkServiceProtocol
-    // TODO: - For old UI style pages, should remove in the future
-    let codableStoreService: PokemonsCodableStoreServiceProtocol
-    
-    // For new style UI
     let actorCodablePokemonStoreService: PokemonActorCodableStoreServiceProtocol
     let actorCodablePokemonsStoreService: PokemonsActorCodableStoreServiceProtocol
     let actorCodableImageDataStoreService: PokemonActorCodableImageStoreServiceProtocol
     init(
         networkService: PokenmonsNetworkServiceProtocol,
-        codableStoreService: PokemonsCodableStoreServiceProtocol,
         actorCodableStoreService: PokemonActorCodableStoreServiceProtocol,
         actorCodablePokemonsStoreService: PokemonsActorCodableStoreServiceProtocol,
         actorCodableImageDataStoreService: PokemonActorCodableImageStoreServiceProtocol
     )
     {
         self.networkService = networkService
-        self.codableStoreService = codableStoreService
         self.actorCodablePokemonStoreService = actorCodableStoreService
         self.actorCodablePokemonsStoreService = actorCodablePokemonsStoreService
         self.actorCodableImageDataStoreService = actorCodableImageDataStoreService

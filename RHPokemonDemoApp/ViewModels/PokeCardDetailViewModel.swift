@@ -23,11 +23,10 @@ class PokeCardDetailViewModel: PokeCardDetailUseCaseDataSource {
     weak var delegate: PokeCardDetailViewModelDelegate?
     
     let networkService = PokemonsNetworkRemoteService()
-    let codableStoreService = PokemonsCodableStoreService()
     let actorCodablePokemonStoreService = PokemonActorCodableStoreService()
     let actorCodablePokemonsStoreService = PokemonsActorCodableStoreService()
     let actorCodableImageDataStoreService = PokemonActorCodableImageStoreService()
-    lazy var respository = PokemonsRepository(networkService: networkService, codableStoreService: codableStoreService, actorCodableStoreService: actorCodablePokemonStoreService, actorCodablePokemonsStoreService: actorCodablePokemonsStoreService, actorCodableImageDataStoreService: actorCodableImageDataStoreService)
+    lazy var respository = PokemonsRepository(networkService: networkService, actorCodableStoreService: actorCodablePokemonStoreService, actorCodablePokemonsStoreService: actorCodablePokemonsStoreService, actorCodableImageDataStoreService: actorCodableImageDataStoreService)
     
     // [gogolook]
     let favoriteStore = FavoritePokemonsStoreService()

@@ -12,6 +12,8 @@
 		D11095E82B657AB100AF81BF /* PokemonsCodableStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11095E72B657AB100AF81BF /* PokemonsCodableStoreService.swift */; };
 		D12800652C182282005F0902 /* FavoritePokemonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12800642C182282005F0902 /* FavoritePokemonDTO.swift */; };
 		D12800672C182304005F0902 /* FavoritePokemonsStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12800662C182304005F0902 /* FavoritePokemonsStoreService.swift */; };
+		D12800692C182946005F0902 /* FavoritePokemonsDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12800682C182946005F0902 /* FavoritePokemonsDomainModel.swift */; };
+		D128006B2C182EDE005F0902 /* FavoritePokemonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128006A2C182EDE005F0902 /* FavoritePokemonsRepository.swift */; };
 		D154D3E92B623AAF0019A665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3E82B623AAF0019A665 /* AppDelegate.swift */; };
 		D154D3EB2B623AAF0019A665 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */; };
 		D154D3F22B623AB20019A665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D154D3F12B623AB20019A665 /* Assets.xcassets */; };
@@ -82,6 +84,8 @@
 		D11095E72B657AB100AF81BF /* PokemonsCodableStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsCodableStoreService.swift; sourceTree = "<group>"; };
 		D12800642C182282005F0902 /* FavoritePokemonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonDTO.swift; sourceTree = "<group>"; };
 		D12800662C182304005F0902 /* FavoritePokemonsStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonsStoreService.swift; sourceTree = "<group>"; };
+		D12800682C182946005F0902 /* FavoritePokemonsDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonsDomainModel.swift; sourceTree = "<group>"; };
+		D128006A2C182EDE005F0902 /* FavoritePokemonsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonsRepository.swift; sourceTree = "<group>"; };
 		D154D3E52B623AAF0019A665 /* RHPokemonDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHPokemonDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D154D3E82B623AAF0019A665 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			children = (
 				D1E058612BD0002D006F965F /* Model */,
 				D154D4352B62C5430019A665 /* PokemonsRepository.swift */,
+				D128006A2C182EDE005F0902 /* FavoritePokemonsRepository.swift */,
 			);
 			path = PokemonsRepository;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 			children = (
 				D154D4292B62588D0019A665 /* PokemonsDomainModel.swift */,
 				D154D4492B63ABB40019A665 /* PokemonDomainModel.swift */,
+				D12800682C182946005F0902 /* FavoritePokemonsDomainModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -592,6 +598,7 @@
 				D154D43C2B62CA1B0019A665 /* PokemonsViewModel.swift in Sources */,
 				D154D3EB2B623AAF0019A665 /* SceneDelegate.swift in Sources */,
 				D154D4362B62C5430019A665 /* PokemonsRepository.swift in Sources */,
+				D12800692C182946005F0902 /* FavoritePokemonsDomainModel.swift in Sources */,
 				D15556112B6A347B006370B8 /* PokemonActorCodableStoreService.swift in Sources */,
 				D12800672C182304005F0902 /* FavoritePokemonsStoreService.swift in Sources */,
 				D154D42A2B62588D0019A665 /* PokemonsDomainModel.swift in Sources */,
@@ -600,6 +607,7 @@
 				D1E058672BD00E4C006F965F /* AllPokemonCardsViewController.swift in Sources */,
 				D154D4282B6258730019A665 /* PokemonsDTO.swift in Sources */,
 				D1CBD52C2BD18D62007EE519 /* Array+Extension.swift in Sources */,
+				D128006B2C182EDE005F0902 /* FavoritePokemonsRepository.swift in Sources */,
 				D15556182B6AA84C006370B8 /* PokemonActorCodableImageStoreService.swift in Sources */,
 				D1E0586B2BD00FB0006F965F /* UIImage+Extension.swift in Sources */,
 				D154D4502B63AF020019A665 /* PokemonViewModel.swift in Sources */,

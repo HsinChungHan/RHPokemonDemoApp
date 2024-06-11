@@ -91,7 +91,6 @@ class PokemonsRepository: PokemonsRepositoryProtocol {
                 self.networkService.downloadPokemonImage(with: id) { result in
                     switch result {
                     case let .success(data):
-                        let base64String = data.base64EncodedString()
                         self.actorCodableImageDataStoreService.insertPokemon(with: id, name: name, imageData: data) { _ in }
                         completion(.success(data))
                     default:

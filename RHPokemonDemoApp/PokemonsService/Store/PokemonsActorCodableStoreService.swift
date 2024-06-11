@@ -10,7 +10,7 @@ import RHCacheStoreAPI
 
 protocol PokemonsActorCodableStoreServiceProtocol {
     func loadAllPokemons(completion: @escaping (Result<PokemonsDTO, PokemonCacheStoreServiceError>) -> Void)
-    func savePokemons(with json: [String: Any], completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void)
+    func insertPokemons(with json: [String: Any], completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void)
     func deletePokemons(completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void)
 }
 
@@ -22,6 +22,7 @@ class PokemonsActorCodableStoreService: PokemonsActorCodableStoreServiceProtocol
         
         store = factory.makeActorCodableStore(with: allPokemonsStoreURL)
     }
+    
     func loadAllPokemons(completion: @escaping (Result<PokemonsDTO, PokemonCacheStoreServiceError>) -> Void) {
         Task {
             let result = await store.retrieve(with: allPokemonsID)
@@ -60,7 +61,7 @@ class PokemonsActorCodableStoreService: PokemonsActorCodableStoreServiceProtocol
         }
     }
     
-    func savePokemons(with json: [String: Any], completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void) {
+    func insertPokemons(with json: [String: Any], completion: @escaping (Result<Void, PokemonCacheStoreServiceError>) -> Void) {
         Task {
             do {
                try await store.insert(with: allPokemonsID, json: json)

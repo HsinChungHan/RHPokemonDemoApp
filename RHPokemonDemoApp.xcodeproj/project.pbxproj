@@ -10,6 +10,8 @@
 		D11095E32B656BEA00AF81BF /* RHCacheStore in Frameworks */ = {isa = PBXBuildFile; productRef = D11095E22B656BEA00AF81BF /* RHCacheStore */; };
 		D11095E62B6574F600AF81BF /* RHCacheStoreAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D11095E52B6574F600AF81BF /* RHCacheStoreAPI */; };
 		D11095E82B657AB100AF81BF /* PokemonsCodableStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11095E72B657AB100AF81BF /* PokemonsCodableStoreService.swift */; };
+		D12800652C182282005F0902 /* FavoritePokemonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12800642C182282005F0902 /* FavoritePokemonDTO.swift */; };
+		D12800672C182304005F0902 /* FavoritePokemonsStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12800662C182304005F0902 /* FavoritePokemonsStoreService.swift */; };
 		D154D3E92B623AAF0019A665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3E82B623AAF0019A665 /* AppDelegate.swift */; };
 		D154D3EB2B623AAF0019A665 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */; };
 		D154D3F22B623AB20019A665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D154D3F12B623AB20019A665 /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 
 /* Begin PBXFileReference section */
 		D11095E72B657AB100AF81BF /* PokemonsCodableStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsCodableStoreService.swift; sourceTree = "<group>"; };
+		D12800642C182282005F0902 /* FavoritePokemonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonDTO.swift; sourceTree = "<group>"; };
+		D12800662C182304005F0902 /* FavoritePokemonsStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonsStoreService.swift; sourceTree = "<group>"; };
 		D154D3E52B623AAF0019A665 /* RHPokemonDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHPokemonDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D154D3E82B623AAF0019A665 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D154D3EA2B623AAF0019A665 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -368,8 +372,9 @@
 			isa = PBXGroup;
 			children = (
 				D11095E72B657AB100AF81BF /* PokemonsCodableStoreService.swift */,
-				D15556102B6A347B006370B8 /* PokemonActorCodableStoreService.swift */,
+				D12800662C182304005F0902 /* FavoritePokemonsStoreService.swift */,
 				D155561E2B6B57F3006370B8 /* PokemonsActorCodableStoreService.swift */,
+				D15556102B6A347B006370B8 /* PokemonActorCodableStoreService.swift */,
 				D15556172B6AA84C006370B8 /* PokemonActorCodableImageStoreService.swift */,
 			);
 			path = Store;
@@ -388,6 +393,7 @@
 			children = (
 				D154D4272B6258730019A665 /* PokemonsDTO.swift */,
 				D154D4472B63A6100019A665 /* PokemonDTO.swift */,
+				D12800642C182282005F0902 /* FavoritePokemonDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				D15556162B6A3E5E006370B8 /* JsonEncoder+codableToJson.swift in Sources */,
 				D1CBD53A2BD25668007EE519 /* PokeCardDetailViewModel.swift in Sources */,
 				D154D4442B6370C00019A665 /* MainQueueDispatcherDecorator+ColoredPokemonsUseCase.swift in Sources */,
+				D12800652C182282005F0902 /* FavoritePokemonDTO.swift in Sources */,
 				D154D4422B62CF170019A665 /* PokemonsCoordinator.swift in Sources */,
 				D155561C2B6AA9EC006370B8 /* PokemonNetworkServiceError.swift in Sources */,
 				D15556142B6A38EB006370B8 /* JsonDecoder+jsonToCodable.swift in Sources */,
@@ -586,6 +593,7 @@
 				D154D3EB2B623AAF0019A665 /* SceneDelegate.swift in Sources */,
 				D154D4362B62C5430019A665 /* PokemonsRepository.swift in Sources */,
 				D15556112B6A347B006370B8 /* PokemonActorCodableStoreService.swift in Sources */,
+				D12800672C182304005F0902 /* FavoritePokemonsStoreService.swift in Sources */,
 				D154D42A2B62588D0019A665 /* PokemonsDomainModel.swift in Sources */,
 				D155561A2B6AA9D3006370B8 /* PokemonCacheStoreServiceError.swift in Sources */,
 				D1CBD5382BD24FF3007EE519 /* PokeCardDetailUseCase.swift in Sources */,

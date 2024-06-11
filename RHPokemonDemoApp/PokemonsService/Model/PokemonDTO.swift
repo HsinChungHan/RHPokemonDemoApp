@@ -29,6 +29,4 @@ struct PokemonDTO: Codable {
             }
         }
     }
-    
-    
 }
